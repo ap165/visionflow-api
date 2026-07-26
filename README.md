@@ -1,100 +1,97 @@
 <p align="center">
-<img src="https://capsule-render.vercel.app/api?type=waving&height=260&color=0:0f2027,50:203a43,100:2c5364&text=VisionFlow%20API&fontColor=ffffff&fontSize=55&animation=fadeIn&fontAlignY=38&desc=AI-Powered%20Voice%20Automation%20Backend&descAlignY=60"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=260&color=0:0F172A,50:2563EB,100:06B6D4&text=VisionFlow%20API&fontColor=ffffff&fontSize=56&animation=fadeIn&fontAlignY=38&desc=AI-Powered%20Voice%20Automation%20Backend&descAlignY=60"/>
 </p>
 
 <p align="center">
-<img src="https://readme-typing-svg.demolab.com?font=Inter&weight=700&size=24&pause=1000&color=00E5FF&center=true&vCenter=true&width=900&lines=🎤+Voice+First+Automation;🤖+AI+Powered+Browser+Navigation;♿+Accessibility+Without+Limits;⚡+Serverless+%7C+Fast+%7C+Scalable" />
+<img src="https://readme-typing-svg.demolab.com?font=Poppins&weight=700&size=24&pause=1200&color=38BDF8&center=true&vCenter=true&width=900&lines=🎤+Voice-Controlled+Web+Automation;🤖+AI-Powered+Browser+Assistant;♿+Accessibility+Through+Intelligence;⚡+Built+with+Flask+%26+Vercel" />
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/stars/YOUR_USERNAME/VisionFlowAPI?style=for-the-badge"/>
-<img src="https://img.shields.io/github/forks/YOUR_USERNAME/VisionFlowAPI?style=for-the-badge"/>
-<img src="https://img.shields.io/github/license/YOUR_USERNAME/VisionFlowAPI?style=for-the-badge"/>
-<img src="https://img.shields.io/badge/Python-3.11+-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-<img src="https://img.shields.io/badge/AWS-Lambda-FF9900?style=for-the-badge&logo=awslambda"/>
-<img src="https://img.shields.io/badge/OpenAI-LLM-black?style=for-the-badge&logo=openai"/>
+
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask"/>
+<img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel"/>
+<img src="https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai"/>
+<img src="https://img.shields.io/badge/API-REST-06B6D4?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/License-MIT-success?style=for-the-badge"/>
+
 </p>
 
 ---
 
-<div align="center">
+# 🌊 VisionFlow API
 
-## 🌊 Welcome to VisionFlow API
+> **The intelligent backend powering voice-first browser automation.**
 
-**VisionFlow API** is the intelligent backend powering a new generation of **voice-controlled browser automation**.
+VisionFlow API transforms natural language into browser actions.
 
-Instead of navigating complex websites manually, users simply **speak**.
+Instead of navigating confusing websites manually, users simply **speak**, and VisionFlow understands their intent, plans the workflow, and executes the required actions seamlessly.
 
-VisionFlow understands the request, plans the workflow, and performs actions automatically.
-
-> *Making the web accessible through AI.*
-
-</div>
+Built with **Flask**, deployed on **Vercel**, and designed to power the next generation of AI browser assistants.
 
 ---
 
-## 🎥 Live Preview
+## 🎥 AI in Action
 
 <p align="center">
-<img width="800" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExc2F6NDB5bDBpZzFxd3V6ZXg5dDlmbjl2dTVhY3dhcmYxZmJxY3k2ZCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/coxQHKASG60HrHtvkt/giphy.gif">
+<img width="750" src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2M2bDN6YjBuYTd5MzRkOW03djE4cDk5dHFpdG0yeWZnN3VnZjl2eCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/l3vRfNA1p0rvhMSvS/giphy.gif">
 </p>
 
 ---
 
 # ✨ Features
 
-- 🎙️ Natural Voice Commands
-- 🧠 AI Intent Detection
-- 🌐 Autonomous Browser Navigation
-- 📝 Smart Form Completion
-- ⚡ Serverless AWS Lambda Backend
-- 🔐 Secure JWT Authentication
-- 📡 REST APIs
-- 🚀 Highly Scalable Architecture
-- 🤖 LLM Powered Decision Making
-- ♿ Built for Accessibility
+- 🎤 Voice command processing
+- 🧠 AI intent recognition
+- 🌐 Smart browser automation
+- 📝 Intelligent form filling
+- 🔐 JWT Authentication
+- ⚡ High-performance REST API
+- 🤖 LLM-powered workflow planning
+- 🔄 Modular architecture
+- 🚀 Fast deployment with Vercel
+- ♿ Accessibility-first design
 
 ---
 
-# 🏗️ System Architecture
+# 🏗 Architecture
 
 ```text
                     🎤 User
-                      │
-                      ▼
-             Browser Extension
-                      │
-              Voice Commands
-                      │
-                      ▼
-        ┌────────────────────────┐
-        │    VisionFlow API       │
-        └────────────────────────┘
-              │      │      │
-              ▼      ▼      ▼
-          Auth     AI     Automation
-              │      │      │
-              └──────┼──────┘
-                     ▼
-            Browser Actions
-                     │
-                     ▼
-               Website Updated
+                       │
+                       ▼
+              Browser Extension
+                       │
+                 Voice Commands
+                       │
+                       ▼
+          ┌─────────────────────────┐
+          │     VisionFlow API      │
+          │        Flask            │
+          └─────────────────────────┘
+               │      │       │
+               ▼      ▼       ▼
+          Authentication
+          AI Processing
+          Browser Actions
+               │
+               ▼
+        Intelligent Automation
 ```
 
 ---
 
-# ⚙️ Tech Stack
+# 🛠 Tech Stack
 
 | Technology | Purpose |
 |------------|---------|
 | 🐍 Python | Backend |
-| ☁️ AWS Lambda | Compute |
-| 🚪 API Gateway | APIs |
+| 🌶 Flask | REST API |
+| ▲ Vercel | Deployment |
+| 🤖 OpenAI / Gemini | AI |
 | 🔐 JWT | Authentication |
-| 🧠 OpenAI / Gemini | AI Engine |
 | 🍃 MongoDB | Database |
-| ☁️ AWS S3 | Storage |
+| 📦 GitHub Actions | CI/CD *(optional)* |
 
 ---
 
@@ -103,23 +100,25 @@ VisionFlow understands the request, plans the workflow, and performs actions aut
 ```text
 VisionFlowAPI
 │
+├── api/
 ├── auth/
 ├── middleware/
 ├── services/
+├── routes/
 ├── utils/
 ├── models/
-├── handlers/
 │
-├── lambda_function.py
+├── app.py
 ├── requirements.txt
+├── vercel.json
 └── README.md
 ```
 
 ---
 
-# 🚀 Getting Started
+# 🚀 Quick Start
 
-Clone the project
+Clone the repository
 
 ```bash
 git clone https://github.com/YOUR_USERNAME/VisionFlowAPI.git
@@ -134,14 +133,20 @@ pip install -r requirements.txt
 Run locally
 
 ```bash
-python lambda_function.py
+python app.py
+```
+
+Server starts at
+
+```
+http://localhost:5000
 ```
 
 ---
 
 # 🔐 Authentication
 
-Every protected endpoint requires
+All protected endpoints require
 
 ```http
 Authorization: Bearer YOUR_ACCESS_TOKEN
@@ -149,16 +154,18 @@ Authorization: Bearer YOUR_ACCESS_TOKEN
 
 ---
 
-# 📡 Example Request
+# 📡 Example API
+
+### Login
 
 ```http
-POST /auth/login
+POST /api/auth/login
 ```
 
 ```json
 {
-    "email":"demo@example.com",
-    "password":"password"
+    "email":"user@example.com",
+    "password":"password123"
 }
 ```
 
@@ -173,24 +180,24 @@ Response
 
 ---
 
-# 🛣️ Roadmap
+# 🌍 Vision
 
-- [ ] AI Planning Engine
-- [ ] Multi-Agent Support
-- [ ] Computer Vision
-- [ ] Browser Memory
-- [ ] Context Awareness
-- [ ] Webpage Understanding
-- [ ] Autonomous Task Planning
-- [ ] Enterprise APIs
+VisionFlow is building a future where interacting with websites is as natural as having a conversation.
+
+Whether it's filling lengthy forms, navigating government portals, or helping users with disabilities browse the web, VisionFlow bridges the gap between humans and technology through AI.
 
 ---
 
-# 🌍 Vision
+# 🚧 Roadmap
 
-VisionFlow is building the future of **voice-first web interaction**.
-
-Whether it's filling government forms, navigating complex dashboards, or assisting visually impaired users, VisionFlow transforms spoken language into intelligent browser actions.
+- [ ] Multi-agent execution
+- [ ] Computer Vision support
+- [ ] Webpage semantic understanding
+- [ ] Autonomous task planning
+- [ ] Memory-based workflows
+- [ ] Multi-language support
+- [ ] Enterprise API
+- [ ] Browser history reasoning
 
 ---
 
@@ -199,55 +206,35 @@ Whether it's filling government forms, navigating complex dashboards, or assisti
 ```bash
 git clone ...
 
-git checkout -b feature/amazing-feature
+git checkout -b feature/new-feature
 
-git commit -m "Added something awesome"
+git commit -m "Added awesome feature"
 
-git push origin feature/amazing-feature
+git push origin feature/new-feature
 ```
 
-Open a Pull Request 🚀
+Then open a Pull Request 🚀
 
 ---
 
-## ⚡ Activity
+# ⭐ Support
 
-<p align="center">
+If VisionFlow helped you,
 
-<img src="https://github-readme-stats.vercel.app/api?username=YOUR_USERNAME&show_icons=true&theme=tokyonight&hide_border=true"/>
+⭐ Star the repository
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=YOUR_USERNAME&theme=tokyonight&hide_border=true"/>
+🍴 Fork the project
 
-</p>
-
----
-
-## 🐍 Contribution Snake
-
-<p align="center">
-<img src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_USERNAME/output/github-contribution-grid-snake.svg">
-</p>
-
----
-
-## 💙 Support
-
-If you find this project useful,
-
-⭐ **Star the repository**
-
-🍴 **Fork it**
-
-🚀 **Build something amazing**
+🚀 Build something amazing
 
 ---
 
 <p align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=140&section=footer&color=0:2c5364,100:0f2027"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&height=140&section=footer&color=0:06B6D4,100:0F172A"/>
 
 ### Made with ❤️ by VisionFlow
 
-*"Accessibility isn't a feature — it's a necessity."*
+*"Making the web accessible, one voice command at a time."*
 
 </p>
