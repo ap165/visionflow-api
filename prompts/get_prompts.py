@@ -2,10 +2,10 @@ from pathlib import Path
 
 PROMPTS = {
     file.stem: file.read_text(encoding="utf-8")
-    for file in Path().glob("*.txt")
+    for file in Path("prompts").glob("*.txt")
 }
 
 classification_prompt = PROMPTS["classification"]
 planner_prompt = PROMPTS["planner"]
-vision_prompt = PROMPTS["vision"]
+browser_action_prompt = PROMPTS["browser_action"]
 summarizer_prompt = PROMPTS["summarizer"]
