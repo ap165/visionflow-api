@@ -1,46 +1,38 @@
-from openai import OpenAI
-from config import NVIDIA_API_KEY
-import json
+from google import genai
+from google.genai import types
+from config import API_KEY
 
 
-client = OpenAI(
-  base_url = "https://integrate.api.nvidia.com/v1",
-  api_key = NVIDIA_API_KEY
-)
-
-tools = [
-    {
-        "type": "function",
-        "function": {
-            "name": "web_search",
-            "description": "Search the web for information.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "query": {
-                        "type": "string"
-                    }
-                },
-                "required": ["query"]
-            }
-        }
-    }
-]
+system_instruction = """
+You are VisionFlow AI, an intelligent and reliable assistant.
+Provide accurate, helpful, and well-structured responses. Prioritize factual correctness and clearly state any uncertainty instead of guessing.
+Write naturally in clear English. Use clean Markdown with headings, lists, tables, and code blocks when they improve readability. Keep responses concise unless the user requests more detail.
+Adapt your tone and level of detail to the user's request. Be creative in explanations and examples, but never at the expense of accuracy.
+For coding tasks, write clean, production-quality code following best practices.
+Always answer the user's intent directly. Do not include unnecessary filler, repetition, or meta commentary.
+"""
 
 
-def chat(prompt, max_tokens=1024):
-  completion = client.chat.completions.create(
-    model="meta/llama-3.2-3b-instruct",
-    messages=[{"role":"user","content":prompt}],
-    temperature=0.3,
-    top_p=0.7,
-    max_tokens=max_tokens,
-    stream=False,
-  )
-  
+client = genai.Client(api_key=API_KEY)
+MODEL = "gemini-3.1-flash-lite"
 
-  return (completion.choices[0].message.content)
+def chat(prompt: str, max_tokens=1024) -> str:
+    response = client.models.generate_content(
+        model=MODEL,
+        contents=prompt,
+        config=types.GenerateContentConfig(
+            system_instruction=system_instruction,
+            response_mime_type="application/json",
+            temperature=0.5,
+            top_p=0.95,
+            max_output_tokens=max_tokens,
+        )
+    )
+
+    return response.text
+
+
 
 
 if __name__ == "__main__":
-  print(print(chat("Hello there, how are you?")))
+    print(chat("Hello there, how are you?"))

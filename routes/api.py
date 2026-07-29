@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from services import chat
-from prompts import classification_prompt, browser_action_prompt
+from prompts import classification_prompt, browser_action_prompt, summarizer_prompt, conversation_action_prompt
 import json
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
@@ -20,7 +20,7 @@ def agent():
 def classify():
     prompt = request.get_json().get("q")
     # prompt = request.args.get("q")
-    res = chat(classification_prompt.replace("{{USER_MESSAGE}}", prompt), max_tokens=20)
+    res = chat(classification_prompt.replace("{{USER_MESSAGE}}", prompt), max_tokens=50)
     try:
         return json.loads(res)
     except Exception as e:
@@ -38,6 +38,10 @@ def aiResponse():
 
     if intent == "browser_action":
         res = chat((browser_action_prompt.replace("{{USER_MESSAGE}}", message)).replace("{{PAGE_SNAPSHOT}}", snapshot))
+    elif intent == "page_question":
+        res = chat((summarizer_prompt.replace("{{USER_MESSAGE}}", message)).replace("{{PAGE_SNAPSHOT}}", snapshot))
+    elif intent == "conversation":
+        res = chat(conversation_action_prompt.replace("{{USER_MESSAGE}}", message))
 
     try:
         return json.loads(res)

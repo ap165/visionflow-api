@@ -6,6 +6,6 @@ PROMPTS = {
 }
 
 classification_prompt = PROMPTS["classification"]
-planner_prompt = PROMPTS["planner"]
+conversation_action_prompt = PROMPTS["conversation"]
 browser_action_prompt = PROMPTS["browser_action"]
 summarizer_prompt = PROMPTS["summarizer"]
