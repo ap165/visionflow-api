@@ -9,7 +9,6 @@ api_bp = Blueprint("api", __name__, url_prefix="/api")
 @api_bp.route("/agent", methods=["GET", "POST"])
 def agent():
     queery = request.args.get("q")
-
     reply = chat(queery)
 
     return reply
@@ -32,6 +31,7 @@ def classify():
 @api_bp.route("/ai-response", methods=["POST"])
 def aiResponse():
     data = request.get_json()
+    
     intent = data.get("intent")
     message = data.get("message")
     snapshot = str(data.get("snapshot"))
