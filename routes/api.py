@@ -17,8 +17,9 @@ def agent():
 # Classifies the user intent
 @api_bp.route("/classify", methods=["POST"])
 def classify():
-    prompt = request.get_json().get("q")
+    prompt = json.loads(request.get_json()).get("q")
     # prompt = request.args.get("q")
+    jsonify()
     res = chat(classification_prompt.replace("{{USER_MESSAGE}}", prompt), max_tokens=50)
     try:
         return json.loads(res)
@@ -30,8 +31,8 @@ def classify():
 # AI response
 @api_bp.route("/ai-response", methods=["POST"])
 def aiResponse():
-    data = request.get_json()
-    
+    data = json.loads(request.get_json())
+
     intent = data.get("intent")
     message = data.get("message")
     snapshot = str(data.get("snapshot"))

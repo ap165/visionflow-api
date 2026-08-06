@@ -7,7 +7,7 @@ Return ONLY valid JSON.
 Schema:
 {
   "intent": "",
-  "currentPageSnapshotRequired": true
+  "snapshot": true
 }
 
 Valid intents:
@@ -19,7 +19,7 @@ Valid intents:
 
 Rules:
 - Return exactly one intent.
-- page_question → currentPageSnapshotRequired = true.
+- page_question → snapshot = true.
 - browser_action → true only if the action depends on the current page; otherwise false.
 - conversation and unsupported → false.
 - Do not infer information from the current page unless a snapshot is required.
