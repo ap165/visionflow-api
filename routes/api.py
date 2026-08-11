@@ -1,10 +1,9 @@
 from flask import Blueprint, request, jsonify
 from services import chat
-from prompts import classification_prompt, browser_action_prompt, summarizer_prompt, conversation_action_prompt
+from prompts import browser_planner, visual_analyzer
 import json
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
-
 
 @api_bp.route("/agent", methods=["GET", "POST"])
 def agent():
@@ -13,36 +12,36 @@ def agent():
 
     return reply
 
-
 # Classifies the user intent
-@api_bp.route("/classify", methods=["POST"])
+@api_bp.route("/planner", methods=["POST"])
 def classify():
-    prompt = json.loads(request.get_json()).get("q")
-    # prompt = request.args.get("q")
-    jsonify()
-    res = chat(classification_prompt.replace("{{USER_MESSAGE}}", prompt), max_tokens=50)
+    req_body = json.loads(request.get_json())
+
+    prompt = req_body.get("prompt")
+    context_memory = req_body.get("history")
+
+    formatted_prompt = browser_planner.replace("{{USER_MESSAGE}}", prompt).replace("{{HISTORY}}", context_memory)
+    
+    res = chat(formatted_prompt)
     try:
         return json.loads(res)
     except Exception as e:
         print(e)
         return (res)
 
-
 # AI response
-@api_bp.route("/ai-response", methods=["POST"])
+@api_bp.route("/visual-planner", methods=["POST"])
 def aiResponse():
-    data = json.loads(request.get_json())
+    req_body = json.loads(request.get_json())
 
-    intent = data.get("intent")
-    message = data.get("message")
-    snapshot = str(data.get("snapshot"))
+    intent = req_body.get("intent")
+    instruction = req_body.get("instruction")
+    context_memory = req_body.get("history")
+    snapshot = str(req_body.get("snapshot"))
 
-    if intent == "browser_action":
-        res = chat((browser_action_prompt.replace("{{USER_MESSAGE}}", message)).replace("{{PAGE_SNAPSHOT}}", snapshot))
-    elif intent == "page_question":
-        res = chat((summarizer_prompt.replace("{{USER_MESSAGE}}", message)).replace("{{PAGE_SNAPSHOT}}", snapshot))
-    elif intent == "conversation":
-        res = chat(conversation_action_prompt.replace("{{USER_MESSAGE}}", message))
+    formatted_prompt = visual_analyzer.replace("{{INTENT}}", intent).replace("{{INSTRUCTION}}", instruction).replace("{{HISTORY}}", context_memory).replace("{{PAGE_SNAPSHOT}}", snapshot)
+
+    res = chat(formatted_prompt)
 
     try:
         return json.loads(res)

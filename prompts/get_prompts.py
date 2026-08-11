@@ -5,7 +5,5 @@ PROMPTS = {
     for file in Path("prompts").glob("*.txt")
 }
 
-classification_prompt = PROMPTS["classification"]
-conversation_action_prompt = PROMPTS["conversation"]
-browser_action_prompt = PROMPTS["browser_action"]
-summarizer_prompt = PROMPTS["summarizer"]
+browser_planner = PROMPTS["browser_planner"]
+visual_analyzer = PROMPTS["visual_analyzer"]

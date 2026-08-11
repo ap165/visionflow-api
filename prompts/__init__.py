@@ -1,1 +1,1 @@
-from .get_prompts import classification_prompt, browser_action_prompt, summarizer_prompt, conversation_action_prompt
+from .get_prompts import browser_planner, visual_analyzer
