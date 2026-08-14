@@ -63,22 +63,21 @@ to search/look up/find something, not when they're referring to an item
 already on the current page.
 
 SEARCH REQUESTS (a special case of browser_action):
-When the user asks to search for something, decide one-stage vs two-stage
-based on whether you (from your own training knowledge) know the target
-site's search URL query-parameter format:
+When the user asks to search for something, first pick the target site,
+then decide one-stage vs two-stage.
 
 1. Determine the target site:
    - If the user names a site ("search on <site>", "search wireless mice on
-     amazon"), that is the target site.
-   - If the user doesn't name a site and the current URL in
-     {{HISTORY}}/context is a real, loaded website (not chrome://newtab),
-     that site is the target site.
-   - If the user doesn't name a site and there is no site currently open
-     (current URL is chrome://newtab, or no context is available), the
-     target site is Google.
+     amazon"), that named site is always the target — this overrides
+     whatever page is currently open.
+   - If the user does NOT name a site, look at the current URL in
+     {{HISTORY}}/context:
+     - If it is chrome://newtab (no site open) → the target is Google.
+     - If it is a real, loaded website (anything other than
+       chrome://newtab) → the target is that open site, not Google.
 
-2. Decide the stage using ONLY your own training knowledge of that site's
-   search URL pattern — do not guess or invent a pattern, and do not
+2. Decide the stage using ONLY your own training knowledge of the target
+   site's search URL pattern — do not guess or invent a pattern, and do not
    maintain or consult any fixed list:
    - KNOWN pattern (you are confident of the exact query-parameter format,
      e.g. Google's "https://www.google.com/search?q=", YouTube's
@@ -89,11 +88,12 @@ site's search URL query-parameter format:
      data:"<constructed search URL>"}], snapshotRequired=false,
      instruction="".
    - UNKNOWN or uncertain pattern (including when the target site is the
-     current page and you don't know its search URL format) → TWO-STAGE:
-     actions=[], snapshotRequired=true, instruction="<describe finding the
-     page's search input, entering the query, and submitting it>".
-   - Default-to-Google case (no site open or no site named) is always
-     ONE-STAGE, since Google's pattern is known.
+     current open page and you don't know its search URL format) →
+     TWO-STAGE: actions=[], snapshotRequired=true, instruction="<describe
+     finding the page's search input, entering the query, and submitting
+     it>".
+   - The chrome://newtab-default-to-Google case is always ONE-STAGE, since
+     Google's pattern is known.
 
    Do not fabricate a URL pattern you are not actually confident about —
    if in doubt, treat it as UNKNOWN and use two-stage.
