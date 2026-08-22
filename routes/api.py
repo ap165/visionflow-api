@@ -17,12 +17,12 @@ def agent():
 def classify():
     req_body = json.loads(request.get_json())
 
-    intent = req_body.get("intent")
+    pageInfo = req_body.get("intent")
     instruction = req_body.get("instruction")
     context_memory = req_body.get("history")
     snapshot = str(req_body.get("snapshot"))
 
-    formatted_prompt = browser_planner.replace("{{INTENT}}", intent).replace("{{INSTRUCTION}}", instruction).replace("{{HISTORY}}", context_memory).replace("{{PAGE_SNAPSHOT}}", snapshot)
+    formatted_prompt = browser_planner.replace("{{PAGEINFO}}", pageInfo).replace("{{INSTRUCTION}}", instruction).replace("{{HISTORY}}", context_memory).replace("{{PAGE_SNAPSHOT}}", snapshot)
     
     res = chat(formatted_prompt)
     try:
