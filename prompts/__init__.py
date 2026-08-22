@@ -1,1 +1,1 @@
-from .get_prompts import browser_planner, visual_analyzer
+from .get_prompts import browser_planner

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify
 from services import chat
-from prompts import browser_planner, visual_analyzer
+from prompts import browser_planner
 import json
 
 api_bp = Blueprint("api", __name__, url_prefix="/api")
@@ -15,35 +15,37 @@ def agent():
 # Classifies the user intent
 @api_bp.route("/planner", methods=["POST"])
 def classify():
-    req_body = json.loads(request.get_json())
-
-    prompt = req_body.get("prompt")
-    context_memory = req_body.get("history")
-
-    formatted_prompt = browser_planner.replace("{{USER_MESSAGE}}", prompt).replace("{{HISTORY}}", context_memory)
-    
-    res = chat(formatted_prompt)
     try:
+        # 1. Get the audio file from the request
+        if "audioFile" not in request.files:
+            return jsonify({"error": "No audio file provided"}), 400
+            
+        audio_file = request.files["audioFile"]
+        
+        # Read the raw bytes into memory and get the mime type (e.g., 'audio/webm')
+        audio_bytes = audio_file.read()
+        mime_type = audio_file.content_type 
+
+        
+        context_memory = request.form.get("history", "")
+        snapshot = request.form.get("snapshot",  "")
+
+        instructions = "Please listen to the attached audio and act on it."
+        formatted_prompt = browser_planner.replace(
+            "{{USER_MESSAGE}}", instructions
+        ).replace(
+            "{{HISTORY}}", context_memory
+        ).replace("{{PAGE_SNAPSHOT}}", snapshot)
+        
+        # 4. Pass the prompt AND the audio bytes directly to your chat function
+        res = chat(
+            prompt=formatted_prompt, 
+            audio_bytes=audio_bytes, 
+            mime_type=mime_type
+        )
+        
         return json.loads(res)
+
     except Exception as e:
-        print(e)
-        return (res)
-
-# AI response
-@api_bp.route("/visual-planner", methods=["POST"])
-def aiResponse():
-    req_body = json.loads(request.get_json())
-
-    intent = req_body.get("intent")
-    instruction = req_body.get("instruction")
-    context_memory = req_body.get("history")
-    snapshot = str(req_body.get("snapshot"))
-
-    formatted_prompt = visual_analyzer.replace("{{INTENT}}", intent).replace("{{INSTRUCTION}}", instruction).replace("{{HISTORY}}", context_memory).replace("{{PAGE_SNAPSHOT}}", snapshot)
-
-    res = chat(formatted_prompt)
-
-    try:
-        return json.loads(res)
-    except Exception as e:
-        return (e)
+        print(f"Error in classify: {e}")
+        return jsonify({"error": str(e)}), 500

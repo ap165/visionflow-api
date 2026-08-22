@@ -6,4 +6,3 @@ PROMPTS = {
 }
 
 browser_planner = PROMPTS["browser_planner"]
-visual_analyzer = PROMPTS["visual_analyzer"]
